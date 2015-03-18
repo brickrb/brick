@@ -6,6 +6,6 @@ Ruby has also fallen a bit behind in terms of contributions. New and emerging co
 
 Improving the infrastructure and implementation of gem hosting is also important. Allowing mirrors to be created in an easy and efficient way is crucial for the global Ruby community. Those who are geographically far away from Amazon's US East data center should not experience enormous load times. As well, it should be easy for someone to spin up their own private gem hosting service. These are problems other dependency managers have solved, and I think it is time for the Ruby community to solve these problems.
 
-## With the above stated, I am proposing that RubyGems, Bundler, and RubyGems.org be rethought and rewritten.
+## With the above stated, I am proposing that RubyGems, Bundler, and RubyGems.org be reimagined and rewritten.
 
 This is the ultimate purpose of GemTime - to be the one-stop shop for Ruby dependencies, similar to how other programming languages have one steadfast brand, CocoaPods for Cocoa, and npm for Node.js.
