@@ -1,4 +1,6 @@
-# Why GemTime?
+# GemTime
+
+## Why GemTime?
 
 RubyGems and Bundler have long served the Ruby community well. In fact, RubyGems just recently passed the twelve year anniversary of its initial commit. However, Ruby is starting to lag behind as compared to other languages. Security vulnerabilities and other issues had been an issue a few years ago with RubyGems.org and Bundler. As well, it is better for the Ruby community to have one place to look to, not have a separate system for installing manifested dependencies (Bundler) as compared to have just one system for everyone to use.
 
@@ -9,3 +11,7 @@ Improving the infrastructure and implementation of gem hosting is also important
 ## With the above stated, I am proposing that RubyGems, Bundler, and RubyGems.org be reimagined and rewritten.
 
 This is the ultimate purpose of GemTime - to be the one-stop shop for Ruby dependencies, similar to how other programming languages have one steadfast brand, CocoaPods for Cocoa, and npm for Node.js.
+
+## How?
+
+GemTime's leadership will be structured similarly to io.js'. It is key for a dependency manager to open and transparent, as a layer of trust develops in the community. Trust is essential -- the dependency manager hosts and manages the dependencies, it is important for the community feel comfortable about the security of their packages.
