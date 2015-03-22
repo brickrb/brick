@@ -1,0 +1,20 @@
+language: ruby
+
+branches:
+  only:
+    - master
+
+notifications:
+  slack:
+    secure: ONjlid25I7QrJkvNXamRYkiBGne008HAW0432iMEF+at7efIHOQlEALizSVDpls8ZECjplaYP4jW3odLx18rmIvaaCIy1YzQxMgPpemOneGI+uUSxxASTE5kX0LWdCfwAd0MD0v/NfsbmAh3FoVrn12DF/U5T1j5c30ZxhLGAEc=
+rvm:
+  - 2.2
+  - 2.1
+  - 2.0.0
+
+matrix:
+  fast_finish: true
+  include:
+  - rvm: 2.2
+  - rvm: 2.1
+  - rvm: 2.0.0
