@@ -8,6 +8,16 @@ notifications:
   slack:
     secure: ONjlid25I7QrJkvNXamRYkiBGne008HAW0432iMEF+at7efIHOQlEALizSVDpls8ZECjplaYP4jW3odLx18rmIvaaCIy1YzQxMgPpemOneGI+uUSxxASTE5kX0LWdCfwAd0MD0v/NfsbmAh3FoVrn12DF/U5T1j5c30ZxhLGAEc=
 rvm:
+  # Standard Ruby
   - 2.2
   - 2.1
   - 2.0.0
+  # JRuby
+  - jruby-20mode
+  # Rubinius
+  - rbx-2
+  # Ruby Enterprise
+  - ree
+  # Latest
+  - ruby-head
+  - jruby-head
