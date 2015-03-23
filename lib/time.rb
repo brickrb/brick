@@ -1,3 +1,3 @@
-module GemTime
-  require 'gem_time/gem_version'
+module Time
+  require 'time/gem_version'
 end
