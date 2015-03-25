@@ -7,5 +7,5 @@
 Follow this format:
 
 ```
-* [#1](https://github.com/maclover7/gemtime/pull/1): Pull Request Title - [@maclover7](https://github.com/maclover7).
+* [#1](https://github.com/brickrb/brick/pull/1): Pull Request Title - [@maclover7](https://github.com/maclover7).
 ```
