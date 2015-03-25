@@ -1,6 +1,6 @@
 # Brick
 
-[![Build Status](https://magnum.travis-ci.com/maclover7/gemtime.svg?token=N7gFMBwPvu7q4gJ4NXE6&branch=master)](https://magnum.travis-ci.com/maclover7/gemtime)
+[![Build Status](https://travis-ci.org/brickrb/brick.svg?branch=master)](https://travis-ci.org/brickrb/brick)
 
 Welcome!
 
