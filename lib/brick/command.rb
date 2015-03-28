@@ -11,5 +11,21 @@ module Brick
     self.version = VERSION
     self.description = 'Brick, the Ruby library package manager.'
     self.plugin_prefixes = %w(claide brick)
+
+    def self.options
+      [
+        ['--silent',   'Show nothing'],
+      ].concat(super)
+    end
+
+    def self.run(argv)
+      super(argv)
+    end
+
+    def initialize(argv)
+      super
+      #config.silent = argv.flag?('silent', config.silent)
+    end
+
   end
 end
