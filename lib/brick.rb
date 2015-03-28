@@ -1,6 +1,6 @@
 module Brick
   require 'brick/gem_version'
-  require 'brick/specification'
 
-  Spec = Specification
+  autoload :Command,       'brick/command'
+  autoload :Specification, 'brick/specification'
 end
