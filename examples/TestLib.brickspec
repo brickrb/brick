@@ -1,0 +1,9 @@
+Pod::Spec.new do
+  name 'TestLib'
+  version '1.0'
+  summary 'A spec of a lib, to test that it too can be used to develop the lib.'
+
+  dependency 'SSZipArchive', '> 0.1'
+  dependency 'JSONKit'
+  dependency 'ASIHTTPRequest', '1.8'
+end
