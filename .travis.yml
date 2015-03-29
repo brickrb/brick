@@ -1,5 +1,7 @@
 language: ruby
 
+before_install: gem install bacon
+
 branches:
   only:
     - master
