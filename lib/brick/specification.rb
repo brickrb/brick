@@ -95,6 +95,8 @@ module Brick
       missing << "`author(s)'"                  unless @authors
 
       incorrect = []
+      allowed = [nil, :jruby, :rbx, :ree]
+      incorrect << ["`platform'", allowed] unless allowed.include?(@platform)
 
       unless missing.empty? && incorrect.empty?
         message = "The following #{(missing + incorrect).size == 1 ? 'attribute is' : 'attributes are'}:\n"
