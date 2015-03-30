@@ -13,7 +13,6 @@ module Brick
     end
 
     attr_accessor :repos_dir, :verbose, :silent
-    alias_method :clean?,   :clean
     alias_method :verbose?, :verbose
     alias_method :silent?,  :silent
 

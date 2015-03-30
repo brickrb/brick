@@ -1,6 +1,6 @@
 language: ruby
 
-before_install: gem install bacon
+before_install: gem install rspec
 
 branches:
   only:
