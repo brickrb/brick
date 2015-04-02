@@ -1,3 +1,20 @@
+# Tests
+#-----------------------------------------------------------------------------#
+
+  namespace :spec do
+    desc "Run the unit specs"
+    task :unit do
+      sh "bacon spec/unit/**/*_spec.rb"
+    end
+
+    task :all do
+      sh "bacon -a"
+    end
+  end
+
+  desc "Run all specs"
+  task :spec => 'spec:all'
+
 # Vendored Libraries
 #-----------------------------------------------------------------------------#
   def clean_files(files, regex, replacement = '')
