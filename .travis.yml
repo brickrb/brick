@@ -2,7 +2,7 @@ language: ruby
 
 before_install: gem install bacon
 
-script: rspec
+script: rake spec:all
 
 branches:
   only:
