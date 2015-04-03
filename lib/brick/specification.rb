@@ -23,10 +23,10 @@ module Brick
     attr_accessor :description
     attr_accessor :source
 
-#    attr_reader :version
-#    def version=(version)
-#      @version = Version.new(version)
-#    end
+    attr_reader :version
+    def version=(version)
+      @version = Brick::Version.new(version)
+    end
 
     def authors=(*names_and_email_addresses)
       list = names_and_email_addresses.flatten
@@ -72,11 +72,11 @@ module Brick
 
     include Config::Mixin
 
-#   def ==(other)
-#     self.class === other &&
-#       @name && @name == other.name &&
-#         @version && @version == other.version
-#   end
+     def ==(other)
+       self.class === other &&
+         @name && @name == other.name &&
+           @version && @version == other.version
+     end
 
 #    def dependency_by_name(name)
 #      @dependencies.find { |d| d.name == name }
@@ -93,18 +93,18 @@ module Brick
       (set = part_of_specification_set) && set.specification
     end
 
-    #def to_s
-    #  "`#{@name}' version `#{@version}'"
-    #end
+    def to_s
+      "`#{@name}' version `#{@version}'"
+    end
 
-#   def inspect
-#     "#<#{self.class.name} for #{to_s}>"
-#   end
+    def inspect
+      "#<#{self.class.name} for #{to_s}>"
+    end
 
     def validate!
       attrs = []
       attrs << "`name'"                       unless @name
-#      attrs << "`version'"                    unless @version
+      attrs << "`version'"                    unless @version
       attrs << "`summary'"                    unless @summary
       attrs << "`homepage'"                   unless @homepage
       attrs << "`author(s)'"                  unless @authors

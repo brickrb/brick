@@ -1,5 +1,6 @@
 Brick::Specification.new do |s|
   s.name         = 'BananaLib'
+  s.version      = '0.0.1'
   s.authors      = 'Banana Corp', { 'Monkey Boy' => 'monkey@banana-corp.local' }
   s.homepage     = 'http://banana-corp.local/banana-lib.html'
   s.summary      = 'Chunky bananas!'
