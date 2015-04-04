@@ -25,3 +25,7 @@ rvm:
   # Latest
   - ruby-head
   - jruby-head
+
+matrix:
+  allow_failures:
+    - rvm: ree
