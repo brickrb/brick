@@ -1,10 +1,17 @@
 module Brick
   require 'brick/gem_version'
 
+  # Indicates a runtime error **not** caused by a bug.
+  #
+  class PlainInformative < StandardError; end
+
+  # Indicates a user error.
+  #
+  class Informative < PlainInformative; end
+
   # Core Functionality
     autoload :Version,       'brick/version'
     autoload :Requirement,   'brick/requirement'
-    autoload :Dependency,    'brick/dependency'
     autoload :Spec,          'brick/specification'
     autoload :Specification, 'brick/specification'
 
