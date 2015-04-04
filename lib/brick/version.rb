@@ -83,7 +83,7 @@ module Brick
 
     # @return [Boolean] indicates whether or not the version is a prerelease.
     #
-    # @note   Prerelease Pods can contain a hyphen and/or a letter
+    # @note   Prerelease Bricks can contain a hyphen and/or a letter
     #
     #         For more info, see: http://semver.org
     #

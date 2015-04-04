@@ -51,22 +51,22 @@ module Brick
     end
     attr_reader :part_of
 
-#    def part_of_dependency=(*name_and_version_requirements)
-#      @part_of = dependency(*name_and_version_requirements)
-#    end
+    def part_of_dependency=(*name_and_version_requirements)
+      @part_of = dependency(*name_and_version_requirements)
+    end
 
-#    def source_files=(*patterns)
-#      @source_files = patterns.flatten.map { |p| Pathname.new(p) }
-#    end
-#    attr_reader :source_files
+    def source_files=(*patterns)
+      @source_files = patterns.flatten.map { |p| Pathname.new(p) }
+    end
+    attr_reader :source_files
 
-#    def dependency(*name_and_version_requirements)
-#      name, *version_requirements = name_and_version_requirements.flatten
-#      dep = Dependency.new(name, *version_requirements)
-#      @dependencies << dep
-#      dep
-#    end
-#    attr_reader :dependencies
+    def dependency(*name_and_version_requirements)
+      name, *version_requirements = name_and_version_requirements.flatten
+      dep = Dependency.new(name, *version_requirements)
+      @dependencies << dep
+      dep
+    end
+    attr_reader :dependencies
 
     # Not attributes
 
@@ -78,9 +78,9 @@ module Brick
            @version && @version == other.version
      end
 
-#    def dependency_by_name(name)
-#      @dependencies.find { |d| d.name == name }
-#    end
+    def dependency_by_name(name)
+      @dependencies.find { |d| d.name == name }
+    end
 
     def part_of_specification_set
       if @part_of
@@ -108,8 +108,8 @@ module Brick
       attrs << "`summary'"                    unless @summary
       attrs << "`homepage'"                   unless @homepage
       attrs << "`author(s)'"                  unless @authors
-#      attrs << "either `source' or `part_of'" unless @source || @part_of
-#      attrs << "`source_files'"               unless @source_files
+      attrs << "either `source' or `part_of'" unless @source || @part_of
+      attrs << "`source_files'"               unless @source_files
       unless attrs.empty?
         raise Informative, "The following required " \
           "#{attrs.size == 1 ? 'attribute is' : 'attributes are'} " \
