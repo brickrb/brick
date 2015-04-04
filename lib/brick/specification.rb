@@ -68,9 +68,15 @@ module Brick
     end
     attr_reader :dependencies
 
+    attr_accessor :platform
+
     # Not attributes
 
     include Config::Mixin
+
+    def any_platform?
+      @platform.nil?
+    end
 
      def ==(other)
        self.class === other &&
@@ -102,18 +108,22 @@ module Brick
     end
 
     def validate!
-      attrs = []
-      attrs << "`name'"                       unless @name
-      attrs << "`version'"                    unless @version
-      attrs << "`summary'"                    unless @summary
-      attrs << "`homepage'"                   unless @homepage
-      attrs << "`author(s)'"                  unless @authors
-      attrs << "either `source' or `part_of'" unless @source || @part_of
-      attrs << "`source_files'"               unless @source_files
-      unless attrs.empty?
-        raise Informative, "The following required " \
-          "#{attrs.size == 1 ? 'attribute is' : 'attributes are'} " \
-          "missing: #{attrs.join(", ")}"
+      missing = []
+      missing << "`name'"                       unless @name
+      missing << "`version'"                    unless @version
+      missing << "`summary'"                    unless @summary
+      missing << "`homepage'"                   unless @homepage
+      missing << "`author(s)'"                  unless @authors
+
+      incorrect = []
+      allowed = [nil, :jruby, :ree, :rbx]
+      incorrect << ["`platform'", allowed] unless allowed.include?(@platform)
+
+      unless missing.empty? && incorrect.empty?
+        message = "The following #{(missing + incorrect).size == 1 ? 'attribute is' : 'attributes are'}:\n"
+        message << "* missing: #{missing.join(", ")}" unless missing.empty?
+        message << "* incorrect: #{incorrect.map { |x| "#{x[0]} (#{x[1..-1]})" }.join(", ")}" unless incorrect.empty?
+        raise Informative, message
       end
     end
 

@@ -65,4 +65,36 @@ module Brick
       @spec.should.not == Specification.new
     end
   end
+
+  describe "A Brick::Specification, in general," do
+    before do
+      @spec = Specification.new
+    end
+
+    def validate(&block)
+      Proc.new(&block).should.raise(Informative)
+    end
+
+    it "raises if the specification does not contain the minimum required attributes" do
+      exception = validate { @spec.validate! }
+      exception.message =~ /name.+?version.+?summary.+?homepage.+?authors/
+     end
+
+    it "raises if the platform is unrecognized" do
+      validate { @spec.validate! }.message.should.not.include 'platform'
+      @spec.platform = :jruby
+      validate { @spec.validate! }.message.should.not.include 'platform'
+      @spec.platform = :ree
+      validate { @spec.validate! }.message.should.not.include 'platform'
+      @spec.platform = :windows
+      validate { @spec.validate! }.message.should.include 'platform'
+    end
+
+    it "returns the platform that the static library should be build for" do
+      @spec.should.be.any_platform
+      @spec.platform = :jruby
+      @spec.platform.should == :jruby
+      @spec.should.not.be.any_platform
+    end
+  end
 end
