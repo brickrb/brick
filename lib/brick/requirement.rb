@@ -15,8 +15,6 @@ module Brick
 
     quoted_operators = OPS.keys.map { |k| Regexp.quote k }.join '|'
 
-    SOURCE_SET_REQUIREMENT = Struct.new(:for_lockfile).new "!" # :nodoc:
-
     # @return [Regexp] The regular expression used to validate input strings.
     #
     PATTERN = /\A\s*(#{quoted_operators})?\s*(#{Version::VERSION_PATTERN})\s*\z/
@@ -61,13 +59,6 @@ module Brick
       new('>= 0')
     end
 
-    ###
-    # A source set requirement, used for Gemfiles and lockfiles
-
-    def self.source_set # :nodoc:
-      SOURCE_SET_REQUIREMENT
-    end
-
     # Parses the given object returning a tuple where the first entry is an
     # operator and the second a version. If not operator is provided it
     # defaults to `=`.
@@ -91,13 +82,13 @@ module Brick
 
     ##
     # An array of requirement pairs. The first element of the pair is
-    # the op, and the second is the Gem::Version.
+    # the op, and the second is the Brick::Version.
 
     attr_reader :requirements #:nodoc:
 
     ##
     # Constructs a requirement from +requirements+. Requirements can be
-    # Strings, Gem::Versions, or Arrays of those. +nil+ and duplicate
+    # Strings, Brick::Versions, or Arrays of those. +nil+ and duplicate
     # requirements are ignored. An empty set of +requirements+ is the
     # same as <tt>">= 0"</tt>.
 
@@ -126,22 +117,7 @@ module Brick
     end
 
     ##
-    # Formats this requirement for use in a Gem::RequestSet::Lockfile.
-
-    def for_lockfile # :nodoc:
-      return if [DefaultRequirement] == @requirements
-
-      list = requirements.sort_by { |_, version|
-        version
-      }.map { |op, version|
-        "#{op} #{version}"
-      }.uniq
-
-      " (#{list.join ', '})"
-    end
-
-    ##
-    # true if this gem has no requirements.
+    # true if this brick has no requirements.
 
     def none?
       if @requirements.size == 1

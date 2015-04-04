@@ -12,6 +12,8 @@ module Brick
   # Core Functionality
     autoload :Version,       'brick/version'
     autoload :Requirement,   'brick/requirement'
+    autoload :Dependency,    'brick/dependency'
+
     autoload :Spec,          'brick/specification'
     autoload :Specification, 'brick/specification'
 
