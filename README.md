@@ -7,3 +7,8 @@ Welcome!
 Brick is a new look at RG and Bundler.
 
 This project is licensed with the MIT License. For more details, head over to the license file.
+
+Note: Brick is a dependency manager heavily influenced by past work done by (in no particular order): Bundler,
+CocoaPods, and RubyGems. As all of these ultimately serve the same goal, many of the same feaures are mimiced.
+All of the above libraries (including Brick) are all licensed under the MIT License. For specific license information,
+you can see the licenses for: [Bundler](https://github.com/bundler/bundler/blob/master/LICENSE.md), [CocoaPods](https://github.com/CocoaPods/CocoaPods/blob/master/LICENSE), and [RubyGems](https://github.com/rubygems/rubygems/blob/master/MIT.txt).
