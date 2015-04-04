@@ -29,9 +29,6 @@ module Brick
     def project_brickfile
       unless @project_brickfile
         @project_brickfile = project_root + 'Brickfile'
-        unless @project_brickfile.exist?
-          @project_brickfile = project_root.glob('*.brickspec').first
-        end
       end
       @project_brickfile
     end
