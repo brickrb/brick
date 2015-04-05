@@ -1,0 +1,3 @@
+platform :jruby
+brick 'rails',   '>= 1'
+brick 'rack',    '~> 1'

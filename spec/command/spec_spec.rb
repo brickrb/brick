@@ -19,7 +19,7 @@ module Brick
     describe 'create subcommand' do
       extend SpecHelper
 
-      it 'creates a new podspec stub file' do
+      it 'creates a new brickspec stub file' do
         run_command('spec', 'create', 'Bananas')
         path = temporary_directory + 'Bananas.brickspec'
         spec = Specification.from_brickspec(path)
