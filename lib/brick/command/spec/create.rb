@@ -55,7 +55,7 @@ module Brick
 
 Brick::Specification.new do |s|
 
-  # ―――  Spec Metadata  ―――――――――――――――――――――――――――――――――――――――――――――――――――――――――― #
+  ―――  Spec Metadata  ――――――――――――――――――――――――――――――――――――――――――――――――――――――――――
   #
   #  These will help people to find your library, and whilst it
   #  can feel like a chore to fill in it's definitely to your advantage. The
@@ -78,7 +78,7 @@ Brick::Specification.new do |s|
   s.homepage     = "#{data[:homepage]}"
 
 
-  # ―――  Spec License  ――――――――――――――――――――――――――――――――――――――――――――――――――――――――――― #
+  ―――  Spec License  ―――――――――――――――――――――――――――――――――――――――――――――――――――――――――――
   #
   #  Licensing your code is important. See http://choosealicense.com for more info.
   #  Popular ones are 'MIT', 'BSD' and 'Apache License, Version 2.0'.
@@ -87,7 +87,7 @@ Brick::Specification.new do |s|
   s.license      = "MIT (example)"
 
 
-  # ――― Author Metadata  ――――――――――――――――――――――――――――――――――――――――――――――――――――――――― #
+  ――― Author Metadata  ―――――――――――――――――――――――――――――――――――――――――――――――――――――――――
   #
   #  Specify the authors of the library, with email addresses. Email addresses
   #  of the authors are extracted from the SCM log. E.g. $ git log. Brick also
@@ -99,7 +99,7 @@ Brick::Specification.new do |s|
   # Or just: s.author    = "John Smith"
   # s.authors            = { "John Smith" => "jsmith@google.com" }
 
-  # ――― Platform Specifics ――――――――――――――――――――――――――――――――――――――――――――――――――――――― #
+  ――― Platform Specifics ―――――――――――――――――――――――――――――――――――――――――――――――――――――――
   #
   #  If this Brick runs only on JRuby, REE, or Rubinius, then specify the platform and
   #  the deployment target. You can optionally include the target after the platform.
@@ -109,7 +109,7 @@ Brick::Specification.new do |s|
   # s.platform     = :rbx, "1.0"
 
 
-  # ――― Project Settings ――――――――――――――――――――――――――――――――――――――――――――――――――――――――― #
+  ――― Project Settings ―――――――――――――――――――――――――――――――――――――――――――――――――――――――――
   #
   #  If you depend on other Brickspecs you can include multiple dependencies to ensure it works.
 
