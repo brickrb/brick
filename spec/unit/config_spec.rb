@@ -50,9 +50,13 @@ module Brick
         Config.instance = @original_config
       end
 
-      it "does not print vebose information" do
+      it "is not silent" do
+        config.silent.should == false
+      end
+
+      it "is not verbose" do
         config.verbose.should == false
       end
     end
   end
-  end
+end

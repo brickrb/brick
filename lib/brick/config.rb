@@ -16,15 +16,21 @@ module Brick
     end
 
     def project_root
-      Pathname.pwd
+      @project_root ||= Pathname.pwd
     end
 
     def project_brickfile
-      unless @project_brickfile
-        @project_brickfile = project_root + 'Brickfile'
-      end
-      @project_brickfile
+      @project_brickfile ||= project_root + 'Brickfile'
     end
+
+    # @return [Podfile] The Podfile to use for the current execution.
+    #
+    def brickfile
+      @brickfile ||= begin
+        Brickfile.from_file(project_brickfile) if project_brickfile.exist?
+      end
+    end
+    attr_writer :brickfile
 
     def self.instance
       @instance ||= new
