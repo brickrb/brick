@@ -1,6 +1,7 @@
 # Brick
 
-[![Build Status](https://travis-ci.org/brickrb/brick.svg?branch=master)](https://travis-ci.org/brickrb/brick)
+[![Travis Build Status](https://travis-ci.org/brickrb/brick.svg?branch=master)](https://travis-ci.org/brickrb/brick)
+[![AppVeyor Build Status](https://ci.appveyor.com/api/projects/status/n4kxj2dv0hqkt0si/branch/master?svg=true)](https://ci.appveyor.com/project/maclover7/brick/branch/master)
 
 Welcome!
 
