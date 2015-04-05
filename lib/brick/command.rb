@@ -24,8 +24,10 @@ module Brick
 
     def initialize(argv)
       super
-      #config.silent = argv.flag?('silent', config.silent)
+      config.silent = argv.flag?('silent', config.silent)
     end
+
+    include Config::Mixin
 
   end
 end
