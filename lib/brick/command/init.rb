@@ -1,6 +1,3 @@
-require 'xcodeproj'
-require 'active_support/core_ext/string/strip'
-
 module Brick
   class Command
     class Init < Command
