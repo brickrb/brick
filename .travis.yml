@@ -1,7 +1,7 @@
 language: ruby
 
 before_install: gem install bacon
-before_install: mkdir tmp
+before_script: mkdir tmp
 
 script: bacon -a
 
