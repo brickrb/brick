@@ -13,14 +13,15 @@ module Brick
     autoload :Version,       'brick/version'
     autoload :Requirement,   'brick/requirement'
     autoload :Dependency,    'brick/dependency'
-
-    autoload :Spec,          'brick/specification'
     autoload :Specification, 'brick/specification'
 
-  # User Funtionality
+  # Everything else
     autoload :Command,       'brick/command'
     autoload :Config,        'brick/config'
+    autoload :Brickfile,     'brick/brickfile'
 
   # Require UI after everything else to reset UI
     require 'brick/ui'
+
+  Spec = Specification
 end
