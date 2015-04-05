@@ -43,8 +43,6 @@ module Brick
           data[:version]       = '0.0.1'
           data[:summary]       = "A short description of #{name}."
           data[:homepage]      = "http://EXAMPLE/#{name}"
-          data[:author_name]   = `git config --get user.name`.to_s
-          data[:author_email]  = `git config --get user.email`.to_s
           data
         end
 
@@ -97,9 +95,9 @@ Brick::Specification.new do |s|
   #
   #
 
-  s.author             = { "#{data[:author_name]}" => "#{data[:author_email]}" }
-  # Or just: s.author    = "#{data[:author_name]}"
-  # s.authors            = { "#{data[:author_name]}" => "#{data[:author_email]}" }
+  s.author               = { "John Smith" => "jsmith@google.com" }
+  # Or just: s.author    = "John Smith"
+  # s.authors            = { "John Smith" => "jsmith@google.com" }
 
   # ――― Platform Specifics ――――――――――――――――――――――――――――――――――――――――――――――――――――――― #
   #

@@ -8,21 +8,29 @@ $:.unshift((ROOT + 'lib').to_s)
 require 'brick'
 
 $:.unshift((ROOT + 'spec').to_s)
-require 'spec_helper/fixture'
+require 'spec_helper/command'         # Test Brick::Command CLI commands
+require 'spec_helper/fixture'         # Use fixtures in tests
 
-context_class = defined?(BaconContext) ? BaconContext : Bacon::Context
-context_class.class_eval do
-  include Brick::Config::Mixin
+module Bacon
+  class Context
+    include Brick::Config::Mixin
+    include SpecHelper::Fixture
+    include SpecHelper::Command
 
-  include SpecHelper::Fixture
-
-  def argv(*argv)
-    Brick::Command::ARGV.new(argv)
+    def temporary_directory
+      SpecHelper.temporary_directory
+    end
   end
 end
 
 config = Brick::Config.instance
 config.silent = true
+
+module SpecHelper
+  def self.temporary_directory
+    ROOT + 'tmp'
+  end
+end
 
 def fixture_spec(name)
   file = SpecHelper::Fixture.fixture(name)
