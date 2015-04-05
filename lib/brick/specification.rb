@@ -70,6 +70,11 @@ module Brick
 
     attr_accessor :platform
 
+    def license=(license)
+      @license = license
+    end
+    attr_reader :license
+
     # Not attributes
 
     include Config::Mixin
@@ -114,6 +119,7 @@ module Brick
       missing << "`summary'"                    unless @summary
       missing << "`homepage'"                   unless @homepage
       missing << "`author(s)'"                  unless @authors
+      missing << "`license'"                    unless @license
 
       incorrect = []
       allowed = [nil, :jruby, :ree, :rbx]

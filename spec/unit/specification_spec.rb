@@ -38,6 +38,10 @@ module Brick
       @spec.description.should == 'Full of chunky bananas.'
     end
 
+    it "returns the brick's license" do
+      @spec.license.should == 'MIT'
+    end
+
     #it "returns the brick's source" do
     #  @spec.read(:source).should == {
     #    :git => 'http://banana-corp.local/banana-lib.git',
@@ -77,7 +81,7 @@ module Brick
 
     it "raises if the specification does not contain the minimum required attributes" do
       exception = validate { @spec.validate! }
-      exception.message =~ /name.+?version.+?summary.+?homepage.+?authors/
+      exception.message =~ /name.+?version.+?summary.+?homepage.+?authors.+?license/
      end
 
     it "raises if the platform is unrecognized" do

@@ -5,4 +5,5 @@ Brick::Specification.new do |s|
   s.homepage     = 'http://banana-corp.local/banana-lib.html'
   s.summary      = 'Chunky bananas!'
   s.description  = 'Full of chunky bananas.'
+  s.license      = 'MIT'
 end
