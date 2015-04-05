@@ -4,13 +4,6 @@ module Brick
   # This is the storage location for Brick's global configuration.
 
   class Config
-    def self.instance
-      @instance ||= new
-    end
-
-    def self.instance=(instance)
-      @instance = instance
-    end
 
     attr_accessor :repos_dir, :verbose, :silent
     alias_method :verbose?, :verbose
@@ -31,6 +24,14 @@ module Brick
         @project_brickfile = project_root + 'Brickfile'
       end
       @project_brickfile
+    end
+
+    def self.instance
+      @instance ||= new
+    end
+
+    def self.instance=(instance)
+      @instance = instance
     end
 
     module Mixin
