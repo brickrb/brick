@@ -24,7 +24,7 @@ module Brick
 
       def brickfile_template
         brickfile = ''
-        brickfile << <<-PLATFORM.strip_heredoc
+        brickfile << <<-PLATFORM
           # Uncomment this line to define a global platform for your project
           # platform :jruby, '1.7.19'
         PLATFORM
