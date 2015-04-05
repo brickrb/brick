@@ -6,6 +6,8 @@ module Brick
   end
 
   class Command < CLAide::Command
+    require 'brick/command/spec'
+
     self.abstract_command = true
     self.command = 'brick'
     self.version = VERSION
