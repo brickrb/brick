@@ -5,23 +5,52 @@ module Brick
 
   class Config
 
+    # The default settings for the configuration.
+    #
+    # Users can specify custom settings in `~/.bricks/config.yaml`.
+    # An example of the contents of this file might look like:
+    #
+    #     ---
+    #     verbose: true
+    #     silent: false
+    #
+    DEFAULTS = {
+      :verbose             => false,
+      :silent              => false,
+    }
+
+    #--------------------------------------#
+
     attr_accessor :repos_dir, :verbose, :silent
     alias_method :verbose?, :verbose
     alias_method :silent?,  :silent
 
     def initialize
-      @repos_dir = Pathname.new(File.expand_path("~/.bricks"))
-      @verbose = false
-      @silent = false
+      configure_with(DEFAULTS)
+
+      if user_settings_file.exist?
+        require 'yaml'
+        user_settings = YAML.load_file(user_settings_file)
+        configure_with(user_settings)
+      end
     end
+
+    # @return [Pathname] the directory where the Bricks are stored.
+    #
+    def repos_dir
+      @repos_dir ||= Pathname.new(ENV['HOME'] + "/.bricks")
+    end
+    attr_writer :repos_dir
 
     def project_root
       @project_root ||= Pathname.pwd
     end
+    attr_writer :project_root
 
     def project_brickfile
       @project_brickfile ||= project_root + 'Brickfile'
     end
+    attr_writer :project_brickfile
 
     # @return [Podfile] The Podfile to use for the current execution.
     #
@@ -32,17 +61,24 @@ module Brick
     end
     attr_writer :brickfile
 
-    def self.instance
-      @instance ||= new
+    # private
+
+    # @return [Pathname] The path of the file which contains the user settings.
+    #
+    def user_settings_file
+      Pathname.new(ENV['HOME'] + "/.bricks/config.yaml")
     end
 
-    def self.instance=(instance)
-      @instance = instance
-    end
-
-    module Mixin
-      def config
-        Config.instance
+    # Sets the values of the attributes with the given hash.
+    #
+    # @param  [Hash{String,Symbol => Object}] values_by_key
+    #         The values of the attributes grouped by key.
+    #
+    # @return [void]
+    #
+    def configure_with(values_by_key)
+      values_by_key.each do |key, value|
+        self.instance_variable_set("@#{key}", value)
       end
     end
 
@@ -74,5 +110,20 @@ module Brick
       end
       nil
     end
+
+    def self.instance
+      @instance ||= new
+    end
+
+    def self.instance=(instance)
+      @instance = instance
+    end
+
+    module Mixin
+      def config
+        Config.instance
+      end
+    end
+
   end
 end

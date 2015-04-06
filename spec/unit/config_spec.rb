@@ -40,7 +40,7 @@ module Brick
       end
     end
 
-    describe "concerning default settings" do
+    describe "config with default settings" do
       before do
         @original_config = config
         Config.instance = nil
@@ -56,6 +56,12 @@ module Brick
 
       it "is not verbose" do
         config.verbose.should == false
+      end
+    end
+
+    describe "Private helpers" do
+      it "returns the path of the user settings file" do
+        config.user_settings_file.should == Pathname.new("~/.bricks/config.yaml").expand_path
       end
     end
   end
