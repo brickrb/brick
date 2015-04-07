@@ -9,7 +9,7 @@ Fork the [project on Github](https://github.com/brickrb/brick) and check out you
 
 ```
 git clone https://github.com/contributor/brick.git
-cd grape
+cd brick
 git remote add upstream https://github.com/brickrb/brick.git
 ```
 
