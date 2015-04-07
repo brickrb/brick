@@ -77,6 +77,7 @@ module Brick
     # @return [void]
     #
     def configure_with(values_by_key)
+      return unless values_by_key
       values_by_key.each do |key, value|
         self.instance_variable_set("@#{key}", value)
       end
