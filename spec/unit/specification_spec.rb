@@ -42,20 +42,6 @@ module Brick
       @spec.license.should == 'MIT'
     end
 
-    #it "returns the brick's source" do
-    #  @spec.read(:source).should == {
-    #    :git => 'http://banana-corp.local/banana-lib.git',
-    #    :tag => 'v1.0'
-    #  }
-    #end
-
-    #it "returns the brick's source files" do
-    #  @spec.read(:source_files).should == [
-    #    Pathname.new('Classes/*.{h,m}'),
-    #    Pathname.new('Vendor')
-    #  ]
-    #end
-
     #it "returns the brick's dependencies" do
     #  expected = Dependency.new('monkey', '~> 1.0.1', '< 1.0.9')
     #  @spec.read(:dependencies).should == [expected]

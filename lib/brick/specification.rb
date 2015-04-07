@@ -21,7 +21,6 @@ module Brick
     attr_accessor :name
     attr_accessor :homepage
     attr_accessor :description
-    attr_accessor :source
 
     attr_reader :version
     def version=(version)
@@ -54,11 +53,6 @@ module Brick
     def part_of_dependency=(*name_and_version_requirements)
       @part_of = dependency(*name_and_version_requirements)
     end
-
-    def source_files=(*patterns)
-      @source_files = patterns.flatten.map { |p| Pathname.new(p) }
-    end
-    attr_reader :source_files
 
     def dependency(*name_and_version_requirements)
       name, *version_requirements = name_and_version_requirements.flatten

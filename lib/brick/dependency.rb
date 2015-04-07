@@ -1,18 +1,12 @@
 module Brick
   # The Dependency allows to specify dependencies of a {Brickfile} or a
-  # {Specification} on a Brick. It stores the name of the dependency, version
-  # requirements and external sources information.
+  # {Specification} on a Brick. It stores the name of the dependency, and
+  # version requirements.
   #
   class Dependency
     # @return [String] The name of the Brick described by this dependency.
     #
     attr_accessor :name
-
-    # @return [Hash{Symbol=>String}] a hash describing the external source
-    #         where the brick should be fetched. The external source has to
-    #         provide its own {Specification} file.
-    #
-    attr_accessor :external_source
 
     # @overload   initialize(name, requirements)
     #
@@ -29,31 +23,7 @@ module Brick
     #             Dependency.new('rails', '~> 1.0')
     #             Dependency.new('rails', '>= 0.5', '< 0.7')
     #
-    # @overload   initialize(name, external_source)
-    #
-    #   @param    [String] name
-    #             the name of the Brick.
-    #
-    #   @param    [Hash] external_source
-    #             a hash describing the external source.
-    #
-    #   @example  Initialization with an external source.
-    #
-    #             Dependency.new('rails', {:git     => 'example.com/repo.git'})
-    #             Dependency.new('rails', {:path    => 'path/to/folder'})
-    #             Dependency.new('rails', {:brickspec => 'example.com/rails.brickspec'})
-    #
-    #
     def initialize(name = nil, *requirements)
-      if requirements.last.is_a?(Hash)
-        external_source = requirements.pop.select { |_, v| !v.nil? }
-        @external_source = external_source unless external_source.empty?
-        unless requirements.empty?
-          raise Informative, 'A dependency with an external source may not ' \
-            "specify version requirements (#{name})."
-        end
-      end
-
       if requirements.length == 1 && requirements.first.is_a?(Requirement)
         requirements = requirements.first
       end
@@ -80,20 +50,6 @@ module Brick
       end
     end
 
-    # @return [Bool] whether the dependency points to an external source.
-    #
-    def external?
-      !@external_source.nil?
-    end
-
-    # @return [Bool] whether the dependency points to a local path.
-    #
-    def local?
-      if external_source
-        external_source[:path] || external_source[:local]
-      end
-    end
-
     # Checks if a dependency would be satisfied by the requirements of another
     # dependency.
     #
@@ -107,7 +63,6 @@ module Brick
     #
     def compatible?(other)
       return false unless name == other.name
-      return false unless external_source == other.external_source
 
       other.requirement.requirements.all? do |_operator, version|
         requirement.satisfied_by? Version.new(version)
@@ -115,14 +70,12 @@ module Brick
     end
 
     # @return [Bool] whether the dependency is equal to another taking into
-    #         account the loaded specification, the head options and the
-    #         external source.
+    #         account the loaded specification.
     #
     def ==(other)
       self.class == other.class &&
         name == other.name &&
-        requirement == other.requirement &&
-        external_source == other.external_source
+        requirement == other.requirement
     end
     alias_method :eql?, :==
 
@@ -145,9 +98,6 @@ module Brick
     # @param  [Dependency] other
     #         the other dependency to merge with.
     #
-    # @note   If one of the decencies specifies an external source or is head,
-    #         the resulting dependency preserves this attributes.
-    #
     # @return [Dependency] a dependency (not necessary a new instance) that
     #         includes also the version requirements of the given one.
     #
@@ -167,11 +117,6 @@ module Brick
         dep = self.class.new(name, self_req.as_list.concat(other_req.as_list))
       end
 
-      if external_source || other.external_source
-        self_external_source  = external_source || {}
-        other_external_source = other.external_source || {}
-        dep.external_source = self_external_source.merge(other_external_source)
-      end
       dep
     end
 
@@ -217,16 +162,13 @@ module Brick
     #           "rails (= 1.0)"
     #           "rails (~> 1.0.1)"
     #           "rails (> 1.0, < 2.0)"
-    #           "rails (from `www.example.com')"
     #           "rails (defined in Brickfile)"
     #
     # @return   [String] the representation of the dependency.
     #
     def to_s
       version = ''
-      if external?
-        version << external_source_description(external_source)
-      elsif requirement != Requirement.default
+      if requirement != Requirement.default
         version << requirement.to_s
       end
       result = @name.dup
@@ -239,11 +181,6 @@ module Brick
     # @param    [String] string
     #           The string that describes the dependency generated from
     #           {#to_s}.
-    #
-    # @note     The information about external sources is not completely
-    #           serialized in the string representation and should be stored a
-    #           part by clients that need to create a dependency equal to the
-    #           original one.
     #
     # @return   [Dependency] the dependency described by the string.
     #
@@ -264,46 +201,9 @@ module Brick
     # @return [String] a string representation suitable for debugging.
     #
     def inspect
-      "<#{self.class} name=#{name} requirements=#{requirement} " \
-        "external_source=#{external_source || 'nil'}>"
+      "<#{self.class} name=#{name} requirements=#{requirement} "
     end
 
     #--------------------------------------#
-
-    private
-
-    # Creates a string representation of the external source suitable for UI.
-    #
-    # @example  Output examples
-    #
-    #           "from `www.example.com/rails.git', tag `v0.0.1'"
-    #           "from `www.example.com/rails.brickspec'"
-    #           "from `~/path/to/rails'"
-    #
-    # @todo     Improve the description for Mercurial and Subversion.
-    #
-    # @return   [String] the description of the external source.
-    #
-    def external_source_description(source)
-      if source.key?(:git)
-        desc =  "`#{source[:git]}`"
-        desc << ", commit `#{source[:commit]}`" if source[:commit]
-        desc << ", branch `#{source[:branch]}`" if source[:branch]
-        desc << ", tag `#{source[:tag]}`"       if source[:tag]
-      elsif source.key?(:hg)
-        desc =  "`#{source[:hg]}`"
-      elsif source.key?(:svn)
-        desc =  "`#{source[:svn]}`"
-      elsif source.key?(:brickspec)
-        desc = "`#{source[:brickspec]}`"
-      elsif source.key?(:path)
-        desc = "`#{source[:path]}`"
-      elsif source.key?(:local)
-        desc = "`#{source[:local]}`"
-      else
-        desc = "`#{source}`"
-      end
-      "from #{desc}"
-    end
   end
 end
