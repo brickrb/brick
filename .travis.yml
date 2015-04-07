@@ -2,31 +2,33 @@ language: ruby
 
 before_install: gem install bacon
 before_script: mkdir tmp
-
 script: bacon -a
 
 branches:
   only:
-    - master
+  - master
 
-notifications:
-  slack:
-    secure: ONjlid25I7QrJkvNXamRYkiBGne008HAW0432iMEF+at7efIHOQlEALizSVDpls8ZECjplaYP4jW3odLx18rmIvaaCIy1YzQxMgPpemOneGI+uUSxxASTE5kX0LWdCfwAd0MD0v/NfsbmAh3FoVrn12DF/U5T1j5c30ZxhLGAEc=
 rvm:
-  # Standard Ruby
+# Standard Ruby
   - 2.2
   - 2.1
   - 2.0.0
-  # JRuby
+# JRuby
   - jruby
-  # Rubinius
+# Rubinius
   - rbx-2
-  # Ruby Enterprise
+# Ruby Enterprise
   - ree
-  # Latest
+# Latest
   - ruby-head
   - jruby-head
 
 matrix:
   allow_failures:
+# Allow REE to fail
     - rvm: ree
+
+notifications:
+# Notify Slack when build is complete
+  slack:
+    secure: fVpUPQvaL3mCuKvZqCsVZKPcV7B723eSE23hER8v0zqCR5W1F+ETRKZFwEZLNJAr1C9zTkwJD//e2eAHSVwEak1df/WuRzTORW58W5YSG5fq6ZTSt1nnmxQhtajseiES33AH25A/gg96jT83BkRC52B0DXfUNxXWOjzz6miDWCc=
