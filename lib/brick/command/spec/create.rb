@@ -5,26 +5,25 @@ module Brick
         self.summary = 'Create spec file stub.'
 
         self.description = <<-DESC
-          Creates a BrickSpec, in the current working dir, called `NAME.br'.
-          If a GitHub url is passed the spec is prepopulated.
+          Creates a BrickSpec, in the current working dir, called `NAME.brickspec'.
         DESC
 
         self.arguments = [
-          CLAide::Argument.new(%w(NAME https://github.com/USER/REPO), false),
+          CLAide::Argument.new(%w(NAME), false),
         ]
 
         def initialize(argv)
-          @name_or_url, @url = argv.shift_argument, argv.shift_argument
+          @name = argv.shift_argument
           super
         end
 
         def validate!
           super
-          help! 'A brick name or repo URL is required.' unless @name_or_url
+          help! 'A brick name is required.' unless @name
         end
 
         def run
-          data = default_data_for_template(@name_or_url)
+          data = default_data_for_template(@name)
           spec = spec_template(data)
           (Pathname.pwd + "#{data[:name]}.brickspec").open('w') { |f| f << spec }
           UI.puts "\nSpecification created at #{data[:name]}.brickspec" #.green
