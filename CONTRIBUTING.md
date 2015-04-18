@@ -1,6 +1,8 @@
 Contributing to Brick
 =====================
 
+Interested in contributing? Awesome!
+
 Brick is work of [lots of contributors](https://github.com/brickrb/brick/graphs/contributors). You're encouraged to submit [pull requests](https://github.com/brickrb/brick/pulls), [propose features and discuss issues](https://github.com/brickrb/brick/issues).
 
 #### Fork the Project
