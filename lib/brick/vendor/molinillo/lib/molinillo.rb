@@ -1,0 +1,5 @@
+require 'brick/vendor/molinillo/lib/molinillo/gem_metadata'
+require 'brick/vendor/molinillo/lib/molinillo/errors'
+require 'brick/vendor/molinillo/lib/molinillo/resolver'
+require 'brick/vendor/molinillo/lib/molinillo/modules/ui'
+require 'brick/vendor/molinillo/lib/molinillo/modules/specification_provider'
