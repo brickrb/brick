@@ -20,6 +20,7 @@ module Brick
     autoload :Config,        'brick/config'
     autoload :Brickfile,     'brick/brickfile'
     autoload :Installer,     'brick/installer'
+    autoload :Lockfile,      'brick/lockfile'
 
   # Require UI after everything else to reset UI
     require 'brick/ui'
