@@ -52,7 +52,7 @@ module Brick
     end
     attr_writer :project_brickfile
 
-    # @return [Podfile] The Podfile to use for the current execution.
+    # @return [Brickfile] The Brickfile to use for the current execution.
     #
     def brickfile
       @brickfile ||= begin

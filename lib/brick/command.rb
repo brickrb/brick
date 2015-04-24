@@ -30,7 +30,23 @@ module Brick
       config.silent = argv.flag?('silent', config.silent)
     end
 
+    #-------------------------------------------------------------------------#
+
     include Config::Mixin
+
+    private
+
+    # Checks that the brickfile exists.
+    #
+    # @raise  If the brickfile does not exists.
+    #
+    # @return [void]
+    #
+    def verify_brickfile_exists!
+      unless config.brickfile
+        raise Informative, "No `Brickfile' found in the project directory."
+      end
+    end
 
   end
 end
