@@ -52,6 +52,11 @@ module Brick
     end
     attr_writer :project_brickfile
 
+    def project_lockfile
+      @project_lockfile ||= project_root + 'Brickfile.lock'
+    end
+    attr_writer :project_lockfile
+
     # @return [Brickfile] The Brickfile to use for the current execution.
     #
     def brickfile
@@ -60,6 +65,15 @@ module Brick
       end
     end
     attr_writer :brickfile
+
+    # @return [Lockfile] The Lockfile to use for the current execution.
+    #
+    def lockfile
+      @lockfile ||= begin
+        Lockfile.from_file(project_lockfile) if project_lockfile.exist?
+      end
+    end
+    attr_writer :lockfile
 
     # private
 
