@@ -9,9 +9,9 @@ module SpecHelper
     def fixture(name)
       file = ROOT + name
       unless file.exist?
-        archive = Pathname.new(file.to_s + '.tar.gz')
+        archive = Pathname.new(file.to_s + '.tgz')
         if archive.exist?
-          system "cd '#{archive.dirname}' && tar -zxvf '#{archive}' > /dev/null 2>&1"
+          system "cd '#{archive.dirname}' && tar -xvzf '#{archive}' > /dev/null 2>&1"
         end
       end
       file
