@@ -1,8 +1,7 @@
 language: ruby
 
 before_install: gem install bacon
-before_script: mkdir tmp
-script: bacon -a
+script: rake spec:all
 
 branches:
   only:

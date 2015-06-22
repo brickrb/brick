@@ -1,3 +1,15 @@
+# Testing
+#-----------------------------------------------------------------------------#
+  namespace :spec do
+    task :all do
+      if Dir.exists?('tmp')
+        exec 'bacon -a'
+      else
+        exec 'mkdir tmp && bacon -a'
+      end
+    end
+  end
+
 # Vendored Libraries
 #-----------------------------------------------------------------------------#
   def clean_files(files, regex, replacement = '')
