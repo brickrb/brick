@@ -1,5 +1,12 @@
 module Brick
   class Brickfile
+
+    # Returns an instance of Brick::Brickfile for an instance of Pathname
+    #
+    # @param  [Pathname] An instance of the Pathname class, with the path for the Brickfile you want to use
+    #
+    # @return [Brickfile] An instance of the Brick::Brickfile class, with the contents of the Brickfile you want to use
+    #
     def self.from_file(path)
       brickfile = Brickfile.new do
         eval(path.read, nil, path.to_s)

@@ -30,7 +30,8 @@ git checkout -b my-feature-branch
 Ensure that you can build the project and run tests.
 
 ```
-bacon -a
+rake dev:setup
+rake spec:all
 ```
 
 #### Write Tests

@@ -1,11 +1,60 @@
+# Development Setup
+#-----------------------------------------------------------------------------#
+
+  namespace :dev do
+    task :setup do
+
+      # Check if Bacon is installed
+      begin
+        gem "bacon"
+      rescue Gem::LoadError
+        exec "gem install bacon"
+      end
+
+      # Make sure tmp directory exists
+      if Dir.exists?('tmp')
+      else
+        exec 'mkdir tmp'
+      end
+
+      puts "Your development setup is ready to go!"
+    end
+  end
+
 # Testing
 #-----------------------------------------------------------------------------#
   namespace :spec do
+    def specs(dir)
+      FileList["spec/#{dir}_spec.rb"].shuffle.join(' ')
+    end
+
+    #--------------------------------------#
+
     task :all do
       if Dir.exists?('tmp')
         exec 'bacon -a'
       else
         exec 'mkdir tmp && bacon -a'
+      end
+    end
+
+    #--------------------------------------#
+
+    task :command do
+      if Dir.exists?('tmp')
+        exec "bacon #{specs('command/**/*')}"
+      else
+        exec "mkdir tmp && bacon #{specs('command/**/*')}"
+      end
+    end
+
+    #--------------------------------------#
+
+    task :unit do
+      if Dir.exists?('tmp')
+        exec "bacon #{specs('unit/**/*')}"
+      else
+        exec "mkdir tmp && bacon #{specs('unit/**/*')}"
       end
     end
   end
