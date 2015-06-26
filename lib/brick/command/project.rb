@@ -4,6 +4,8 @@ module Brick
     # commands.
     #
     module Project
+      include Config::Mixin
+
       module Options
         def options
           [].concat(super)
@@ -23,7 +25,7 @@ module Brick
       # @return [void]
       #
       def run_install_with_update(update)
-        installer = Installer.new(config.brickfile)
+        installer = Installer.new(brickfile)
         installer.update = update
         installer.install!
       end

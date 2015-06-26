@@ -38,7 +38,7 @@ module Brick
 
     # @return [Array<String>] The Bricks that should be installed.
     #
-    attr_reader :names_of_bricks_to_install
+    attr_accessor :names_of_bricks_to_install
 
     # @return [Array<Specification>] The specifications that where installed.
     #
@@ -53,6 +53,8 @@ module Brick
     # @return [void]
     #
     def analyze
+      @brickfile.dependencies.for_each do |dependency|
+      end
     end
 
     # Downloads, installs the documentation and cleans the sources of the Bricks
